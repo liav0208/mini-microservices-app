@@ -9,9 +9,14 @@ const PostList = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("http://localhost:4002/posts");
+      try {
+        const res = await axios.get("http://localhost:4002/posts");
 
-      setPosts(res.data);
+        setPosts(res.data);
+      } catch (e) {
+        console.log(e);
+        setPosts({});
+      }
     };
 
     fetchPosts();
